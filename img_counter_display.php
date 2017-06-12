@@ -23,41 +23,8 @@
 			
 			//link to return to previous page...
 			echo "<a href=".$_SERVER['HTTP_REFERER'].">BACK</a>";
-					
-		
-		$text = "./img/ñ00.png";
-		
-		echo 'Original : ', $text, '</br/>';
-		if(file_exists($text)){
-			echo 'EXIST';
-		} else {echo 'NO!';}
-		echo '</br/>';
-		
-		$fileLile = iconv("UTF-8", "ISO-8859-1//TRANSLIT", $text);
-		echo 'TRANSLIT : ', $fileLile, '</br/>';
-		if(file_exists($fileLile)){
-			echo 'EXIST';
-		} else {echo 'NO!';}
-		echo '</br/>';
-		
-		$fileLile = iconv("UTF-8", "ISO-8859-1//IGNORE", $text);
-		echo 'IGNORE   : ', $fileLile, '</br/>';
-		if(file_exists($fileLile)){
-			echo 'EXIST';
-		} else {echo 'NO!';}
-		echo '</br/>';
-		
-		$fileLile = iconv("UTF-8", "ISO-8859-1", $text);
-		echo 'Plain    : ', $fileLile, '</br/>';
-		if(file_exists($fileLile)){
-			echo 'EXIST';
-		} else {echo 'NO!';}
-		echo '</br/>';
-		
-		?>
-		
-		
-		
-		
+			
+		?>	
+			
 	</body>
 </html>
