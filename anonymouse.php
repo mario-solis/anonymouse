@@ -10,37 +10,32 @@
 			
 			echo "<br/>";
 			
-			// array $_POST: 1 element: 
-			//    K=attribute 'name' of the form; 
-			//    V=text
+			//convert array $_POST (1 element: K=attribute 'name' of the form; V=text) into a array of chars...
+			$char_array = str_split($_POST['addForm']);
+			//$char_array = mb_substr($_POST['addForm'],mb_strlen($_POST['addForm'],'UTF-8'),1);
 			
-			// echo 'caracteres: ' . mb_strlen($_POST['addForm']) . '<br/>';
+			
 			// iterate over String at $_POST['addForm']
 			for ($i = 0; $i < mb_strlen($_POST['addForm']); $i++ ) {
-				
 				$pintar = mb_substr($_POST['addForm'], $i, 1);
-				
-				$img_name = $dir . $pintar . "00.png";
-				
+					
 				//check if there is a image for the letter...
-				
-				if(file_exists($img_name)){
-					//echo 'exist' . '<br/>';
-					//num files for that character >1 => RND
+				if(array_key_exists($pintar,$num_images_per_letter)){
+					//echo $pintar . ' exist!' . '<br/>';
 					$num_imgs_available = $num_images_per_letter[$pintar];
 					
-					// more than 1 img for that char => cRND to select img...
-					if($num_imgs_available > 1){
+					// only one image, just print it!
+					if($num_imgs_available==0){
+						echo "<img src='./img/" . $pintar . "00.png' />";					
+					}
+					// more than 1 img for that char => RND to select img...
+					if($num_imgs_available > 0){
 						echo "<img src='./img/" . $pintar . sprintf('%02d', rand(0,--$num_imgs_available)) .".png' />";
 					}
-					
-					//num files for that character == 1 => just print it, calamar!
-					else{
-						echo "<img src='./img/" . $pintar . "00.png' />";
-					}
 				}
+				
 				// no image for the char...
-				else{					
+				else{
 					// space management (css?)....
 					if ($pintar == " "){
 						$pintar = "<img src='./img/space00.png' />";
@@ -52,7 +47,6 @@
 					}
 					echo $pintar;
 				}
-				
 			}
 			
 			echo "<br/>";
