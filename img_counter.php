@@ -16,9 +16,11 @@
 
 		
 		foreach ($only_files as $filename) {
+			// echo 'archivo (mb): ' . mb_convert_encoding($filename, 'UTF-8', 'pass'); // ñ00.png
 			// convert fu*#ing characters to UTF-8
-			$file_first_letter = mb_convert_encoding($filename[0], 'UTF-8', 'pass');
-			
+			// $file_first_letter = mb_convert_encoding($filename[0], 'UTF-8', 'pass'); // works on windows
+			$file_first_letter = mb_substr(mb_convert_encoding($filename, 'UTF-8', 'pass'), 0, 1,  mb_internal_encoding()); // works on windows
+			// echo 'file_first_letter: ' . $file_first_letter .'<br/>';
 			// if first letter of filename has already been read, we increase the number of files for that letter...
 			if($actual_first == $file_first_letter){
 				//echo 'revisando ' . $actual_first . '<br/;>';
@@ -37,7 +39,7 @@
 				// if it is the last element of the array...
 				if($filename == $last_file){
 					$num_images_per_letter[$actual_first] = $num_imgs;
-					//echo 'guardando: ' . $actual_first . '</br>';
+					// echo 'guardando: ' . $actual_first . '</br>';
 					}
 				}
 			}

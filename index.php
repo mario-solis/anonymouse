@@ -4,7 +4,7 @@
 		<title>a</title>
 	</head>
 	<body>
-		<script>
+		<script language="javascript">
 			//alert("1");
 			function validate_form(){
 				//alert("2");
@@ -21,13 +21,14 @@
 					document.getElementById('textToAnonymouse').setAttribute("placeholder", "escribe algo aquí, Calamar!");
 					valid=false;
 				}
+				
 				return valid;
 			}
 		</script>
 	
 		<a href = 'img_counter_display.php'>counter </a>
 	
-		<form action="anonymouse.php" onsubmit="return validate_form()" method="POST">
+		<form id= "messageCollector" action="anonymouse.php" onsubmit="return validate_form()" method="POST">
 			<br/>
 			text: <br/>
 			<textarea id="textToAnonymouse" name="addForm" rows="5" cols="40"></textarea><br/>
