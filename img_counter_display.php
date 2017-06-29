@@ -1,6 +1,7 @@
 ﻿<html>
 	<head>
 		<title>counter</title>
+		<meta charset="UTF-8">
 	</head>
 	
 	<body style="margin:30;padding:0">
