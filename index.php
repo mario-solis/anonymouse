@@ -22,6 +22,16 @@
 					valid=false;
 				}
 				
+				if (valid == true){
+					var textAreaScreenWidth = document.createElement("textarea");
+					var nodeScreenWidth = document.createTextNode(screen.width);
+					textAreaScreenWidth.setAttribute("name", "screenWidthName");
+					textAreaScreenWidth.appendChild(nodeScreenWidth);
+					
+					var element = document.getElementById("messageCollector");
+					element.appendChild(textAreaScreenWidth);					
+				}
+				
 				return valid;
 			}
 		</script>
