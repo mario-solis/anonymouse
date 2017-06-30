@@ -29,10 +29,11 @@ function validate_form(){
 
 function getScreenWidth(){
 	// alert('getScreenWidth');
+	// create: textArea name = 'screenWidthName' value = screen.width 
 	var textAreaScreenWidth = document.createElement("textarea");
-	var nodeScreenWidth = document.createTextNode(screen.width);
 	textAreaScreenWidth.setAttribute("name", "screenWidthName");
+	var nodeScreenWidth = document.createTextNode(screen.width);
 	textAreaScreenWidth.appendChild(nodeScreenWidth);
-	var element = document.getElementById("messageCollector");
-	element.appendChild(textAreaScreenWidth);
+	// add textArea (screen width) to Form
+	document.getElementById("messageCollector").appendChild(textAreaScreenWidth);
 }
