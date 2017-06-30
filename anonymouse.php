@@ -9,15 +9,14 @@
 			include 'img_counter.php';
 			
 			echo "<br/>";
-			
-			//convert array $_POST (1 element: K=attribute 'name' of the form; V=text) into a array of chars...
-			$char_array = str_split($_POST['addForm']);
-			//$char_array = mb_substr($_POST['addForm'],mb_strlen($_POST['addForm'],'UTF-8'),1);
+			// $char_array = mb_substr($_POST['addForm'],mb_strlen($_POST['addForm'],'UTF-8'),1);
 			echo 'ancho pantalla: ' . $_POST['screenWidthName'] . '<br/>';
+			$anonymous_msg = strtolower($_POST['addForm']);
 			
-			// iterate over String at $_POST['addForm']
-			for ($i = 0; $i < mb_strlen($_POST['addForm']); $i++ ) {
-				$pintar = mb_substr($_POST['addForm'], $i, 1);
+			
+			// iterate over String at $anonymous_msg
+			for ($i = 0; $i < mb_strlen($anonymous_msg); $i++ ) {
+				$pintar = mb_substr($anonymous_msg, $i, 1);
 				// echo 'pintando: ' . $pintar;
 					
 				//check if there is a image for the letter...
