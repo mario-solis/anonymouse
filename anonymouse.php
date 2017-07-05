@@ -8,11 +8,15 @@
 		<?php
 			include 'img_counter.php';
 			
-			echo "<br/>";
-			// $char_array = mb_substr($_POST['addForm'],mb_strlen($_POST['addForm'],'UTF-8'),1);
-			echo 'ancho pantalla: ' . $_POST['screenWidthName'] . '<br/>';
-			$anonymous_msg = strtolower($_POST['addForm']);
+			$anonymous_msg = $_POST['addForm'];
 			
+			// javascript deactivated...
+			if($_POST['phpValidation'] == 'Y'){
+				include 'validations.php';
+				$anonymous_msg = $textToValidate;
+			}
+			// $char_array = mb_substr($_POST['addForm'],mb_strlen($_POST['addForm'],'UTF-8'),1);
+			// echo 'ancho pantalla: ' . $_POST['screenWidthName'] . '<br/>';
 			
 			// iterate over String at $anonymous_msg
 			for ($i = 0; $i < mb_strlen($anonymous_msg); $i++ ) {
@@ -26,7 +30,7 @@
 					
 					// only one image, just print it!
 					if($num_imgs_available==0){
-						echo "<img src='./img/" . $pintar . "00.png' />";					
+						echo "<img src='./img/" . $pintar . "00.png' />";
 					}
 					// more than 1 img for that char => RND to select img...
 					if($num_imgs_available > 0){
@@ -53,7 +57,7 @@
 			echo "<br/>";
 			
 			//link to return to previous page...
-			echo "<a href=".$_SERVER['HTTP_REFERER'].">BACK</a>";
+			echo "<a href='index.php'>index</a>";
 			
 			// Captura de pantalla & enviar mail.
 		?>

@@ -1,6 +1,6 @@
 ﻿<html>
 	<head>
-		<title>counter</title>
+		<title>img_db</title>
 		<meta charset="UTF-8">
 	</head>
 	
@@ -8,7 +8,7 @@
 		<?php
 			include 'img_counter.php';
 			
-			echo 'img_counter_display.php' . '<br/>';
+			//echo 'img_counter_display.php' . '<br/>';
 			
 			foreach($num_images_per_letter as $key => $value) {
 				//$key = mb_convert_encoding($key, 'UTF-8', 'pass');
@@ -20,13 +20,16 @@
 				else{		
 					echo $value;
 				}
+
+				while ($value--) 	echo "<img src='./img/" . $key .  sprintf("%02d", $value) . ".png' style='margin-left:5px' />";
+				
 				echo "<br/>";
 			}
 			
 			echo '<br/>';
 			
 			//link to return to previous page...
-			echo "<a href=".$_SERVER['HTTP_REFERER'].">BACK</a>";
+			echo "<a href='index.php'>index</a>";
 			
 		?>	
 			

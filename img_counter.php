@@ -45,7 +45,8 @@
 					}
 				}
 			}
-		} else{
+		}
+		else{
 			echo $dir ." no es un directorio!";
 		}
 ?>
