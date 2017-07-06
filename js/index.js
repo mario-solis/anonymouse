@@ -3,7 +3,7 @@
 // - single space
 // - replace accents
 function validate_form(){
-	console.log("validate_form");
+	//console.log("validate_form");
 	var textToValidate;
 	var emial;
 	var valid=true;
@@ -25,22 +25,18 @@ function validate_form(){
 		
 		// single space...
 		textToValidate = textToValidate.replace(/\s{2,}/g,' ');
-		console.log('single space: ' + textToValidate);
-		
-		// only numbers and letters...
+			
+		// only letters, numbers, question and exclamation marks...
 		textToValidate = removeSpecial(textToValidate);		
-		console.log('only text and numbers: ' + textToValidate);
 		
 		//replace foreign chars, accents...
 		textToValidate = replaceForeignChars(textToValidate);
-		console.log('replace foreign chars: ' + textToValidate);
 		document.getElementById('textToAnonymouse').value = textToValidate;		
 	}
 	return valid;
 }
 
 function addPhpValidation(){
-	console.log ('addPhpValidation()');
 	// create: textArea name = 'phpValidation' value = 'N' style='display:none'
 	var textAreaPhpValidation = document.createElement("textarea");
 	textAreaPhpValidation.setAttribute("name", "phpValidation");
@@ -72,15 +68,18 @@ function isNumber (text) {
   return false;
 }
 
-// remove special characters
+// only letters, numbers, question and exclamation marks.
 function removeSpecial (text) {
 	if(text) {
+		var qeMarks = ['¿', '?','¡','!'];
 		var lower = text.toLowerCase();
 		var upper = text.toUpperCase();
 		var result = "";
-		console.log('hola');
+		
 		for(var i=0; i<lower.length; ++i) {
-			if(isNumber(text[i]) || (lower[i] != upper[i]) || (lower[i].trim() === '')) {
+			console.log('lower' + lower[i]);
+			console.log('indice de ' + text[i] + ': ' + qeMarks.indexOf(text[i]));
+			if(isNumber(text[i]) || (lower[i] != upper[i]) || (lower[i].trim() === '') || qeMarks.indexOf(text[i]) == 1) {
 				result += lower[i];
 			}
 		}

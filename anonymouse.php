@@ -18,8 +18,22 @@
 				$anonymous_msg = $textToValidate;
 			}
 			
+			//echo "longitud de línea: " . $line . "<br/>";
 			//echo "text to anonymouze: " . $anonymous_msg . "<br/>";
+			$positions = array();
+			$pos = -1;
+			while (($pos = strpos($anonymous_msg, " ", $pos+1)) !== false) {
+				$positions[] = $pos;
+			}
+			//echo "hay " . sizeof($positions) . " espacios en blanco" . "<br/>";
+			//for ($r=0; $r<sizeof($positions);$r++){
+			//	echo "espacio " . $r . " en posición: " . $positions[$r] . " - " . $positions[$r]*54 . "<br/>";
+			//}
 			
+			
+			
+			$actual_space = 0;
+			$line_num = 1;
 			// iterate over String at $anonymous_msg
 			for ($i = 0; $i < mb_strlen($anonymous_msg); $i++ ) {
 				$pintar = mb_substr($anonymous_msg, $i, 1);
@@ -29,7 +43,7 @@
 				if(array_key_exists($pintar,$num_images_per_letter)){
 					// check how many images available per letter...
 					$num_imgs_available = $num_images_per_letter[$pintar];
-					
+
 					// only one image, just print it!
 					if($num_imgs_available==0){
 						$pintar = "<img src='./img/" . $pintar . "00.png' />";
@@ -42,14 +56,26 @@
 				
 				// no image for the char...
 				else{
-					// space management (css?)....
 					if ($pintar == " "){
-						$pintar = "<img src='./img/space00.png' />";
+						if($actual_space<sizeof($positions)-1){
+							$actual_space++;
+							$end_next_word = $positions[$actual_space] * 54;
+						}
+						
+						// echo $actual_space . " - " . $line*$line_num . " - " . $end_next_word;
+						if(($line*$line_num)<$end_next_word){
+							$pintar = "<br/>";
+							$line_num++;
+						}
+						else{
+							$pintar = "<img src='./img/_space00.png' />";
+						}
+						
 					}
 					
 					// char doesn't has an image and it is not a space, make it bigger and print it.
 					else {
-						$pintar = "<span style='font-size: 81px; color: red;'>" . $pintar . "</span>";
+						$pintar = "<span style='font-size: 105px; color: red;'>" . $pintar . "</span>";
 					}
 				}
 				echo $pintar;
