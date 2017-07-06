@@ -9,32 +9,34 @@
 			include 'img_counter.php';
 			
 			$anonymous_msg = $_POST['addForm'];
+			$line = $_POST['screenWidthName'];
 			
-			// javascript deactivated...
+			// javascript deactivated => PHP validations...
 			if($_POST['phpValidation'] == 'Y'){
+				echo "validations.php" . "<br/>";
 				include 'validations.php';
 				$anonymous_msg = $textToValidate;
 			}
-			// $char_array = mb_substr($_POST['addForm'],mb_strlen($_POST['addForm'],'UTF-8'),1);
-			// echo 'ancho pantalla: ' . $_POST['screenWidthName'] . '<br/>';
+			
+			//echo "text to anonymouze: " . $anonymous_msg . "<br/>";
 			
 			// iterate over String at $anonymous_msg
 			for ($i = 0; $i < mb_strlen($anonymous_msg); $i++ ) {
 				$pintar = mb_substr($anonymous_msg, $i, 1);
-				// echo 'pintando: ' . $pintar;
+				//echo 'pintando: ' . $pintar . "<br/>";
 					
 				//check if there is a image for the letter...
 				if(array_key_exists($pintar,$num_images_per_letter)){
-					//echo $pintar . ' exist!' . '<br/>';
+					// check how many images available per letter...
 					$num_imgs_available = $num_images_per_letter[$pintar];
 					
 					// only one image, just print it!
 					if($num_imgs_available==0){
-						echo "<img src='./img/" . $pintar . "00.png' />";
+						$pintar = "<img src='./img/" . $pintar . "00.png' />";
 					}
 					// more than 1 img for that char => RND to select img...
 					if($num_imgs_available > 0){
-						echo "<img src='./img/" . $pintar . sprintf('%02d', rand(0,--$num_imgs_available)) .".png' />";
+						$pintar = "<img src='./img/" . $pintar . sprintf('%02d', rand(0,--$num_imgs_available)) .".png' />";
 					}
 				}
 				
@@ -49,8 +51,8 @@
 					else {
 						$pintar = "<span style='font-size: 81px; color: red;'>" . $pintar . "</span>";
 					}
-					echo $pintar;
 				}
+				echo $pintar;
 			}
 			
 			echo "<br/>";
