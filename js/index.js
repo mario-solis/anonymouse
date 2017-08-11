@@ -71,7 +71,7 @@ function isNumber (text) {
 // only letters, numbers, question and exclamation marks.
 function removeSpecial (text) {
 	if(text) {
-		var qeMarks = ['¿', '?','¡','!'];
+		var qeMarks = ['¿','?','¡','!',"'"];
 		var lower = text.toLowerCase();
 		var upper = text.toUpperCase();
 		var result = "";
@@ -79,7 +79,7 @@ function removeSpecial (text) {
 		for(var i=0; i<lower.length; ++i) {
 			console.log('lower' + lower[i]);
 			console.log('indice de ' + text[i] + ': ' + qeMarks.indexOf(text[i]));
-			if(isNumber(text[i]) || (lower[i] != upper[i]) || (lower[i].trim() === '') || qeMarks.indexOf(text[i]) == 1) {
+			if(isNumber(text[i]) || (lower[i] != upper[i]) || (lower[i].trim() === '') || qeMarks.indexOf(text[i]) > 0) {
 				result += lower[i];
 			}
 		}

@@ -9,7 +9,8 @@
 			include 'img_counter.php';
 			
 			$anonymous_msg = $_POST['addForm'];
-			$line = $_POST['screenWidthName'];
+			$line_length = $_POST['screenWidthName'];
+			//echo 'longitud de línea: ' . $line_length . '<br/>';
 			
 			// javascript deactivated => PHP validations...
 			if($_POST['phpValidation'] == 'Y'){
@@ -18,19 +19,17 @@
 				$anonymous_msg = $textToValidate;
 			}
 			
-			//echo "longitud de línea: " . $line . "<br/>";
+			//echo "longitud de línea: " . $line_length . "<br/>";
 			//echo "text to anonymouze: " . $anonymous_msg . "<br/>";
-			$positions = array();
+			$position_wspcs = array();
 			$pos = -1;
 			while (($pos = strpos($anonymous_msg, " ", $pos+1)) !== false) {
-				$positions[] = $pos;
+				$position_wspcs[] = $pos;
 			}
-			//echo "hay " . sizeof($positions) . " espacios en blanco" . "<br/>";
-			//for ($r=0; $r<sizeof($positions);$r++){
-			//	echo "espacio " . $r . " en posición: " . $positions[$r] . " - " . $positions[$r]*54 . "<br/>";
+			// echo "hay " . sizeof($position_wspcs) . " espacios en blanco" . "<br/>";
+			//for ($r=0; $r<sizeof($position_wspcs);$r++){
+			//	echo "espacio " . $r . " en posición: " . $position_wspcs[$r] . " - " . $position_wspcs[$r]*54 . "<br/>";
 			//}
-			
-			
 			
 			$actual_space = 0;
 			$line_num = 1;
@@ -56,14 +55,21 @@
 				
 				// no image for the char...
 				else{
+					if($pintar == "'"){
+						$pintar = "<img src='./img/_APOSTROPHE.png' />";
+					}
 					if ($pintar == " "){
-						if($actual_space<sizeof($positions)-1){
+						if(sizeof($position_wspcs)==1){
+							$end_next_word = $position_wspcs[$actual_space] * 54;
+						}
+						
+						if($actual_space<sizeof($position_wspcs)-1){
 							$actual_space++;
-							$end_next_word = $positions[$actual_space] * 54;
+							$end_next_word = $position_wspcs[$actual_space] * 54;
 						}
 						
 						// echo $actual_space . " - " . $line*$line_num . " - " . $end_next_word;
-						if(($line*$line_num)<$end_next_word){
+						if(($line_length*$line_num)<$end_next_word){
 							$pintar = "<br/>";
 							$line_num++;
 						}
