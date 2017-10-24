@@ -6,7 +6,7 @@
 	<body>
 		<br/>
 		<?php
-			include 'img_counter.php';
+			include './includes/img_counter.php';
 			
 			$anonymous_msg = $_POST['addForm'];
 			$line_length = $_POST['screenWidthName'];
@@ -88,6 +88,11 @@
 			}
 			
 			echo "<br/>";
+			echo "<br/>";
+			
+			//link to PDF
+			echo "<a href = 'anonymouse_pdf.php'>PDF</a>";
+			
 			echo "<br/>";
 			
 			//link to return to previous page...

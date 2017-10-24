@@ -6,7 +6,7 @@
 	
 	<body style="margin:30;padding:0">
 		<?php
-			include 'img_counter.php';
+			include './includes/img_counter.php';
 			
 			//echo 'img_counter_display.php' . '<br/>';
 			

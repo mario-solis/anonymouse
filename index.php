@@ -8,9 +8,6 @@
 	<body>
 		<a href = 'img_counter_display.php'>counter </a>
 	
-	<script>
-		</script>
-	
 		<form id= "messageCollector" action="anonymouse.php" onsubmit="return validate_form()" method="POST">
 			<br/>
 			text: <br/>
