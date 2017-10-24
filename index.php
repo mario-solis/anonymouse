@@ -12,7 +12,10 @@
 			<br/>
 			text: <br/>
 			<textarea id="textToAnonymouse" name="addForm" rows="5" cols="40"></textarea><br/>
-			<noscript><textarea id="textToAnonymouse" name="phpValidation" style="visibility:hidden">Y</textarea><br/></noscript>
+			<noscript>
+					<textarea id="textToAnonymouse" name="phpValidation" style="visibility:hidden">Y</textarea>
+					<br/>
+			</noscript>
 			<br/>
 			<input type="submit">
 		</form>
