@@ -36,10 +36,11 @@
 			// iterate over String at $anonymous_msg
 			for ($i = 0; $i < mb_strlen($anonymous_msg); $i++ ) {
 				$pintar = mb_substr($anonymous_msg, $i, 1);
-				//echo 'pintando: ' . $pintar . "<br/>";
+				// echo '<br/>pintando: ' . $pintar . "<br/>";
 					
 				//check if there is a image for the letter...
 				if(array_key_exists($pintar,$num_images_per_letter)){
+					// echo '<br/>existe ' .$pintar.'<br/>';
 					// check how many images available per letter...
 					$num_imgs_available = $num_images_per_letter[$pintar];
 

@@ -11,7 +11,7 @@
 			//echo 'img_counter_display.php' . '<br/>';
 			
 			foreach($num_images_per_letter as $key => $value) {
-				//$key = mb_convert_encoding($key, 'UTF-8', 'pass');
+				// $key = mb_convert_encoding($key, 'UTF-8', 'pass');
 				echo $key . ' - ';
 				if($value <=2){
 					echo "<span style='color: red;'>" . $value . "</span>"; 
